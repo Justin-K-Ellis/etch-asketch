@@ -19,9 +19,4 @@
 .cell {
     border: 1px solid black;
     flex: 1;
-    border-radius: 3px;
-}
-
-.cell:hover {
-    background-color: red;
 }
