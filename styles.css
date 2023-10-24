@@ -1,0 +1,17 @@
+.outer-container {
+    margin: auto;
+    width: 50%;
+}
+
+.container {
+    border: 1px solid black;
+    width: 320px;
+    height: 320px;
+    display: flex;
+}
+
+.row {
+    border: 1px solid black;
+    width: 20px;
+    flex: 1;
+}
