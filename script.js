@@ -5,21 +5,12 @@ const resetBtn = document.querySelector("#reset");
 const cellChangeBtn = document.querySelector("#cell-change");
 
 let displayCellNum = document.querySelector("#cell-num");
-let cellNumber = 16;
+let defaultCellNumber = 16;
 
 
-drawGrid(cellNumber);
-
-cellList = document.querySelectorAll(".cell");
-
-cellList.forEach(cell => {
-    cell.addEventListener("mouseover", () => {
-        cell.style.backgroundColor = "black";
-    })
-})
-
-displayCellNum.textContent = `Size: ${cellNumber} x ${cellNumber} (${cellNumber * cellNumber} cells)`
-outerContainer.insertBefore(displayCellNum, buttons);
+drawGrid(defaultCellNumber);
+paintCells();
+showCellInfo(defaultCellNumber);
 
 resetBtn.addEventListener("click", () => {
     location.reload();
@@ -29,9 +20,10 @@ resetBtn.addEventListener("click", () => {
 cellChangeBtn.addEventListener("click", () => {
     let n = prompt("Enter a number:")
     n = Number(n);
-    console.log(typeof n);
-    // TODO: Remove all child nodes from container div before redrawing the grid.
+    removeAllChildNodes(container);
     drawGrid(n);
+    paintCells();
+    showCellInfo(n);
 })
 
 
@@ -45,5 +37,25 @@ function drawGrid(n) {
             cell.classList.add("cell");
             row.appendChild(cell);
         }
+    }
+}
+
+function paintCells () {
+    cellList = document.querySelectorAll(".cell");
+    cellList.forEach(cell => {
+        cell.addEventListener("mouseover", () => {
+            cell.style.backgroundColor = "black";
+        })
+    })
+}
+
+function showCellInfo(cellNumber) {
+    displayCellNum.textContent = `Size: ${cellNumber} x ${cellNumber} (${cellNumber * cellNumber} cells)`;
+    outerContainer.insertBefore(displayCellNum, buttons);
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
     }
 }
