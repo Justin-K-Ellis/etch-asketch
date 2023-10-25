@@ -18,8 +18,11 @@ resetBtn.addEventListener("click", () => {
 
 
 cellChangeBtn.addEventListener("click", () => {
-    let n = prompt("Enter a number:")
+    let n = prompt("Enter a number for columns and row (up to 100):")
     n = Number(n);
+    if (n > 100) {
+        n = 100;
+    }
     removeAllChildNodes(container);
     drawGrid(n);
     paintCells();
@@ -58,4 +61,17 @@ function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
+}
+
+function makeRandomHex() {
+    const hexValues = [
+        "0", "1", "2", "3", "4", "5", "6", "7", "8", 
+        "9", "a", "b", "c", "d", "e", "f"
+    ];
+    let hexString = "#";
+    while (hexString.length <= 6) {
+        let n = Math.ceil(Math.random() * hexValues.length-1);
+        hexString += hexValues[n];
+    }
+    return hexString;
 }
