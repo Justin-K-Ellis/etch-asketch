@@ -47,7 +47,8 @@ function paintCells () {
     cellList = document.querySelectorAll(".cell");
     cellList.forEach(cell => {
         cell.addEventListener("mouseover", () => {
-            cell.style.backgroundColor = "black";
+            let color = makeRandomHex()
+            cell.style.backgroundColor = color;
         })
     })
 }
